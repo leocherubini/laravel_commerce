@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/categories', 'CategoriesController@index');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,7 +26,7 @@ Route::get('admin/categories', 'AdminProductsController@index');
 /*
  * Grupo de rotas para o prefixo admin
  */
-Route::group(['prefix'=>'admin', function() {
+Route::group(['prefix'=>'admin'], function() {
 
 	/*
 	 * Rota de visualizacao de todas Categories
@@ -106,4 +108,4 @@ Route::group(['prefix'=>'admin', function() {
 		['as'=>'products.update', 'uses'=>'AdminProductsController@update']
 	);
 
-}]);
+});
