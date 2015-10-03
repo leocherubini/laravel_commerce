@@ -21,7 +21,7 @@ Route::get('exemplo', 'WelcomeController@exemplo');
 
 Route::get('admin/categories', 'AdminCategoriesController@index');
 
-Route::get('admin/categories', 'AdminProductsController@index');
+Route::get('admin/products', 'AdminProductsController@index');
 
 /*
  * Grupo de rotas para o prefixo admin
