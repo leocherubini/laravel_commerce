@@ -19,4 +19,12 @@ class Product extends Model
         'featured',
         'recommend'
     ];
+
+    /*
+     * Relacionamento belongsTo com model Category
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

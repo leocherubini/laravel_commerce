@@ -10,8 +10,6 @@ class ProductTableSeeder extends Seeder
 
 	public function run()
 	{
-		DB::table('products')->truncate();
 
-		factory(Product::class, 10)->create();
 	}
 }
