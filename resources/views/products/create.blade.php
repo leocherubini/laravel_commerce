@@ -15,6 +15,13 @@
 	
 	{!! Form::open(['route'=>'products.store']) !!}
 
+	<!-- Category Form Select -->
+
+	<div class="form-group">
+		{!! Form::label('category', 'Categories:') !!}
+		{!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
+	</div>
+
 	<!-- Name Form Input -->
 
 	<div class="form-group">

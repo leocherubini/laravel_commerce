@@ -15,6 +15,13 @@
 	
 	{!! Form::open(['route'=>['products.update', $product->id], 'method'=>'put']) !!}
 
+	<!-- Category Form Select -->
+
+	<div class="form-group">
+		{!! Form::label('category', 'Categories:') !!}
+		{!! Form::select('category_id', $categories, $product->category->id, ['class'=>'form-control']) !!}
+	</div>
+
 	<!-- Name Form Input -->
 
 	<div class="form-group">
@@ -55,7 +62,7 @@
 
 	<div class="form-group">
 		
-	{!! Form::submit('Save Category', ['class'=>'btn btn-primary form-control']) !!}
+	{!! Form::submit('Edit Category', ['class'=>'btn btn-primary form-control']) !!}
 
 	</div>
 
