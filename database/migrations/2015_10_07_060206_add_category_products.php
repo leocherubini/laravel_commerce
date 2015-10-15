@@ -18,7 +18,8 @@ class AddCategoryProducts extends Migration
                   ->default(1);
             $table->foreign('category_id')
                   ->references('id')
-                  ->on('categories');
+                  ->on('categories')
+                  ->onDelete('cascade');
         });
     }
 
