@@ -21,6 +21,11 @@ class Product extends Model
         'recommend'
     ];
 
+    public function images()
+    {
+        return $this->hasMany('CodeCommerce\ProductImage');
+    }
+
     /*
      * Relacionamento belongsTo com model Category
      */
