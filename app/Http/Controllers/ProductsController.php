@@ -134,7 +134,7 @@ class ProductsController extends Controller
         return view('products.create_image', compact('product'));
     }
 
-    public function storeImage(Request $request, $id, ProductImage $productImage)
+    public function storeImage(Requests\ProductImageRequest $request, $id, ProductImage $productImage)
     {
 
         $file = $request->file('image');
