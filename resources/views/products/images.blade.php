@@ -36,5 +36,7 @@
 			@endforeach
 		</table>
 
+		<a href="{{ route('products') }}" class="btn btn-default">Voltar</a>
+
 	</div>
 @endsection
