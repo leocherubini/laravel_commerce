@@ -33,4 +33,20 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function destroyImages()
+    {
+        foreach ($this->images() as $image) {
+            
+            if (Storage::disk('s3')->exists($image->id . '.' . $image->extension)) {
+                Storage::disk('s3')->delete($image->id . '.' . $image->extension);
+            }
+            
+            // if (file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)) {
+            //     Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
+            // }
+        }
+        return true;
+    }
+
 }

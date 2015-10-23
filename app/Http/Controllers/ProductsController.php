@@ -111,10 +111,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ProductImage $productImage, $id)
     {
+        $this->productModel->find($id)->destroyImages();
         $this->productModel->find($id)->delete();
-
         return redirect()->route('products');
     }
 
@@ -140,7 +140,7 @@ class ProductsController extends Controller
 
         $image = $productImage::create(['product_id'=>$id, 'extension'=>$extension]);
 
-        Storage::disk('public_local')->put($image->id.'.'.$extension, File::get($file));
+        Storage::disk('s3')->put($image->id.'.'.$extension, File::get($file));
 
         return redirect()->route('products.images', ['id'=>$id]);
 
@@ -150,8 +150,12 @@ class ProductsController extends Controller
     {
         $image = $productImage->find($id);
 
-        if(file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)) {
-            Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
+        // if(file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)) {
+        //     Storage::disk('s3')->delete($image->id.'.'.$image->extension);
+        // }
+
+        if (Storage::disk('s3')->exists($image->id . '.' . $image->extension)) {
+            Storage::disk('s3')->delete($image->id . '.' . $image->extension);
         }
 
         $product = $image->product;
