@@ -3,6 +3,7 @@
 namespace CodeCommerce;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -36,8 +37,9 @@ class Product extends Model
 
     public function destroyImages()
     {
-        foreach ($this->images() as $image) {
-            
+
+        foreach ($this->images as $image) {
+
             if (Storage::disk('s3')->exists($image->id . '.' . $image->extension)) {
                 Storage::disk('s3')->delete($image->id . '.' . $image->extension);
             }
@@ -46,6 +48,7 @@ class Product extends Model
             //     Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
             // }
         }
+
         return true;
     }
 
