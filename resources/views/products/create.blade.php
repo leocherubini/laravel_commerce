@@ -61,6 +61,12 @@
 		{!! Form::label('recommendFalse', 'No') !!}
 	</div>
 
+	<!-- Tags From Input -->
+	<div class="form-group">
+        {!! Form::label('tags','Tags:') !!}
+        {!! Form::textarea('tags',null,['class'=>'form-control']) !!}
+    </div>
+
 	<div class="form-group">
 		
 		{!! Form::submit('Add Product', ['class'=>'btn btn-primary form-control']) !!}

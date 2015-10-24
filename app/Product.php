@@ -40,6 +40,13 @@ class Product extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function getTagListAttribute()
+    {
+        $tags = $this->tags->lists('name')->toArray();
+
+        return implode(', ',$tags);
+    }
+
     public function destroyImages()
     {
 

@@ -8,6 +8,7 @@ use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Product;
 use CodeCommerce\Category;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
@@ -54,15 +55,16 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\ProductRequest $request)
+    public function store(Requests\ProductRequest $request, Tag $tag)
     {
         $input = $request->all();
-
         $product = $this->productModel->fill($input);
-
         $product->save();
 
-        return redirect('products');
+        $tagIds = $tag->saveTags($request->input('tags'));
+        $product->tags()->sync($tagIds);
+
+        return redirect()->route('products');
     }
 
     /**
@@ -98,9 +100,13 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\ProductRequest $request, $id)
+    public function update(Requests\ProductRequest $request, $id, Tag $tag)
     {
-        $this->productModel->find($id)->update($request->all());
+        $product = $this->productModel->find($id);
+        $product->update($request->all());
+
+        $tagIds = $tag->saveTags($request->input('tags'));
+        $product->tags()-sync($tagIds);
 
         return redirect()->route('products');
     }

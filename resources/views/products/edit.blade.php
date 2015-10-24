@@ -61,6 +61,12 @@
 	</div>
 
 	<div class="form-group">
+        {!! Form::label('tags') !!}
+        {!! Form::textarea('tags', $product->tagList, ['class'=>'form-control']) !!}
+    </div>
+
+
+	<div class="form-group">
 		
 	{!! Form::submit('Edit Category', ['class'=>'btn btn-primary form-control']) !!}
 

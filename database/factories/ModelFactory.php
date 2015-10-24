@@ -36,3 +36,9 @@ $factory->define(CodeCommerce\Product::class, function (Faker\Generator $faker) 
         'recommend' => $faker->boolean($chanceOfGettingTrue = 50),
     ];
 });
+
+$factory->define(CodeCommerce\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
