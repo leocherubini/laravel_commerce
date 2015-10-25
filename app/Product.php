@@ -44,7 +44,7 @@ class Product extends Model
     {
         $tags = $this->tags->lists('name')->toArray();
 
-        return implode(', ',$tags);
+        return implode(',',$tags);
     }
 
     public function destroyImages()
