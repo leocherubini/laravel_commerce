@@ -106,7 +106,7 @@ class ProductsController extends Controller
         $product->update($request->all());
 
         $tagIds = $tag->saveTags($request->input('tags'));
-        $product->tags()-sync($tagIds);
+        $product->tags()->sync($tagIds);
 
         return redirect()->route('products');
     }
