@@ -26,11 +26,15 @@ class Tag extends Model
         $tags = array_unique(array_map(function ($str) {
             return ucwords(strtolower(preg_replace('/\s+/', ' ', trim($str))));
         },
-            explode(',', $tags)));
+        
+        explode(',', $tags)));
+
         $tagIds = [];
         foreach ($tags as $tag){
-            array_push($tagIds, $this->firstOrCreate(['name' => $tag])->id);
+            if($tag != "")
+                array_push($tagIds, $this->firstOrCreate(['name' => $tag])->id);
         }
+
         return $tagIds;
     }
 
