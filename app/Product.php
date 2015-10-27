@@ -47,6 +47,11 @@ class Product extends Model
         return implode(',',$tags);
     }
 
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', '=', 1);
+    }
+
     public function destroyImages()
     {
 
@@ -62,6 +67,16 @@ class Product extends Model
         }
 
         return true;
+    }
+
+    /**
+     * Escopo responsavel por retornar o caminha do AWS S3
+     *
+     * @return String
+     */
+    public function scopePathImage()
+    {
+        return 'https://s3-sa-east-1.amazonaws.com/mycommercefiles/';
     }
 
 }
