@@ -7,14 +7,13 @@
     <meta name="author" content="">
     <title>Home | E-Shop</title>
 
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
-
+    @if(Config::get('app.debug'))
+        <link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/vendor/normalize.css') }}">
+    @else
+        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+    @endif
 
 </head><!--/head-->
 
@@ -144,13 +143,18 @@
 
     </footer><!--/Footer-->
 
-
-
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Scripts -->
+    @if(Config::get('app.debug'))
+        <script src="{{ asset('build/js/vendor/jquery.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/angular.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/angular-animate.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/angular-messages.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/ui-bootstrap.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/navbar.min.js') }}"></script>
+    @else
+        <script src="{{ elixir('js/all.js') }}"></script>
+    @endif
 
 </body>
 </html>

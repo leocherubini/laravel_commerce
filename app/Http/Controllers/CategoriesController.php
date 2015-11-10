@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Category;
+use Illuminate\Routing\Redirector;
 
 class CategoriesController extends Controller
 {
@@ -32,7 +33,7 @@ class CategoriesController extends Controller
     	return view('categories.create');
     }
 
-    public function store(Requests\CategoryRequest $request)
+    public function store(Requests\CategoryRequest $request, Redirector $redirector)
     {
     	$input = $request->all();
 
@@ -40,7 +41,7 @@ class CategoriesController extends Controller
 
     	$category->save();
 
-    	return redirect('categories');
+    	return $redirector->route('categories');
     }
 
     public function edit($id)
@@ -50,17 +51,17 @@ class CategoriesController extends Controller
     	return view('categories.edit', compact('category'));
     }
 
-    public function update(Requests\CategoryRequest $request, $id)
+    public function update(Requests\CategoryRequest $request, Redirector $redirector, $id)
     {
     	$this->categoryModel->find($id)->update($request->all());
 
-    	return redirect()->route('categories');
+    	return $redirector->route('categories');
     }
 
-    public function destroy($id)
+    public function destroy(Redirector $redirector, $id)
     {
     	$this->categoryModel->find($id)->delete();
 
-    	return redirect()->route('categories');
+    	return $redirector->route('categories');
     }
 }

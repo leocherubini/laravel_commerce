@@ -12,6 +12,7 @@
 */
 
 Route::get('', 'StoreController@index');
+Route::get('category/{id}', ['as'=>'store.category', 'uses'=>'StoreController@category']);
 
 //Route::get('admin/categories', 'AdminCategoriesController@index');
 
