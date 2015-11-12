@@ -20,7 +20,7 @@ class CategoriesController extends Controller
 	{
 		$this->categoryModel = $categoryModel;
 	}
-    
+
     public function index()
     {
     	$categories = $this->categoryModel->all();

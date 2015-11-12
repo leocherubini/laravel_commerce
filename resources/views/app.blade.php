@@ -6,13 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Laravel</title>
 
-	@if(Config::get('app.front'))
-		{{dd(true)}}
-	@else
-		{{dd(true)}}
-	@endif
-
-	<link href="{{ elixir('css/all.css') }}" rel="stylesheet">
+	<!-- Vendor Styles -->
+	@if(Config::get('app.debug'))
+		<!-- Vendor Styles -->
+        <link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/vendor/normalize.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/vendor/jasny-bootstrap.min.css') }}">
+    @else
+        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+    @endif
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -39,7 +42,7 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Home</a></li>
+					<li><a href="{{ route('admin.index') }}">Home</a></li>
 					<li><a href="{{ route('categories') }}">Categories</a></li>
 					<li><a href="{{ route('products') }}">Products</a></li>
 				</ul>
@@ -64,7 +67,20 @@
 	@yield('content')
 
 	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    @if(Config::get('app.debug'))
+    	<!-- Vendor Scripts -->
+        <script src="{{ asset('build/js/vendor/jquery.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/angular.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/angular-animate.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/angular-messages.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/ui-bootstrap.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/navbar.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/jasny-bootstrap.min.js') }}"></script>
+        <script src="{{ asset('build/js/vendor/holder.js') }}"></script>
+    @else
+        <script src="{{ elixir('js/all.js') }}"></script>
+    @endif
+
 </body>
 </html>

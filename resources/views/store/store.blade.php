@@ -8,9 +8,15 @@
     <title>Home | E-Shop</title>
 
     @if(Config::get('app.debug'))
+        <!-- Vendor Styles -->
         <link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap-theme.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/css/vendor/normalize.css') }}">
+
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="{{ asset('build/css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/prettyPhoto.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/responsive.css') }}">
     @else
         <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
     @endif
@@ -129,22 +135,20 @@
 
     <footer id="footer"><!--Footer-->
 
-
-
-
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-Shop Inc. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a target="_blank" href="http://invoinn.com/">InvoInn</a></span></p>
-                </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <p class="pull-left">Copyright © 2013 E-Shop Inc. All rights reserved.</p>
+                <p class="pull-right">Designed by <span><a target="_blank" href="http://invoinn.com/">InvoInn</a></span></p>
             </div>
         </div>
+    </div>
 
     </footer><!--/Footer-->
 
     <!-- Scripts -->
     @if(Config::get('app.debug'))
+        <!-- Vendor Scripts -->
         <script src="{{ asset('build/js/vendor/jquery.min.js') }}"></script>
         <script src="{{ asset('build/js/vendor/bootstrap.min.js') }}"></script>
         <script src="{{ asset('build/js/vendor/angular.min.js') }}"></script>

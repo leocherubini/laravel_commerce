@@ -6,11 +6,10 @@
     "Leonaro Cherubini<cherubini18@hotmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/leocherubim/laravel_commerce",
+  "homepage": "",
   "moduleType": [
     "amd"
   ],
-  "homepage": "",
   "dependencies": {
     "normalize-css": "normalize.css#3.0.3",
     "bootstrap": "3.3.5",
@@ -18,6 +17,8 @@
     "angular-animate": "1.4.7",
     "angular-messages": "1.4.7",
     "angular-bootstrap": "0.14.3",
-    "angular-strap": "2.3.5"
+    "angular-strap": "2.3.5",
+    "jasny-bootstrap": "~3.1.3",
+    "holderjs": "~2.9.0"
   }
 }

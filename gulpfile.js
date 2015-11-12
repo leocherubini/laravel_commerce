@@ -11,42 +11,52 @@ var elixir = require('laravel-elixir'),
     build_path:  './public/build'
 };
 
-function swallowError (error) {
-
-  // If you want details of the error in the console
-  console.log(error.toString());
-
-  this.emit('end');
-}
-
 config.bower_path = config.assets_path + '/../bower_components';
 
 /**
  * Configuração do javascript
  */
- config.build_path_js = config.build_path + '/js';
- config.build_vendor_path_js = config.build_path_js +'/vendor';
- config.vendor_path_js = [
-     config.bower_path + '/jquery/dist/jquery.min.js',
-     config.bower_path + '/bootstrap/dist/js/bootstrap.min.js',
-     config.bower_path + '/angular/angular.min.js',
-     config.bower_path + '/angular-animate/angular-animate.min.js',
-     config.bower_path + '/angular-messages/angular-messages.min.js',
-     config.bower_path + '/angular-bootstrap/ui-bootstrap.min.js',
-     config.bower_path + '/angular-strap/dist/modules/navbar.min.js',
-     config.assets_path + '/js/contact.js'
- ];
+config.build_path_js = config.build_path + '/js';
+config.build_vendor_path_js = config.build_path_js +'/vendor';
+config.vendor_path_js = [
+    // Vendor Javascripts
+    config.bower_path + '/jquery/dist/jquery.min.js',
+    config.bower_path + '/bootstrap/dist/js/bootstrap.min.js',
+    config.bower_path + '/angular/angular.min.js',
+    config.bower_path + '/angular-animate/angular-animate.min.js',
+    config.bower_path + '/angular-messages/angular-messages.min.js',
+    config.bower_path + '/angular-bootstrap/ui-bootstrap.min.js',
+    config.bower_path + '/angular-strap/dist/modules/navbar.min.js',
+    config.bower_path + '/jasny-bootstrap/dist/js/jasny-bootstrap.min.js',
+    config.bower_path + '/holderjs/holder.js',
+
+    // Custom Javascripts
+    config.assets_path + '/js/jquery.scrollUp.min.js',
+    config.assets_path + '/js/price-range.js',
+    config.assets_path + '/js/jquery.prettyPhoto.js',
+    config.assets_path + '/js/main.js',
+    config.assets_path + '/js/holder.js',
+];
 
 /**
  * Configuração do css
  */
- config.build_path_css = config.build_path + '/css';
- config.build_vendor_path_css = config.build_path_css + '/vendor';
- config.vendor_path_css = [
+config.build_path_css = config.build_path + '/css';
+config.build_vendor_path_css = config.build_path_css + '/vendor';
+config.vendor_path_css = [
+    // Vendor CSS
     config.bower_path + '/normalize-css/normalize.css',
     config.bower_path + '/bootstrap/dist/css/bootstrap.min.css',
     config.bower_path + '/bootstrap/dist/css/bootstrap-theme.min.css',
- ];
+    config.bower_path + '/jasny-bootstrap/dist/css/jasny-bootstrap.min.css',
+
+    // Custom CSS
+    config.assets_path + '/css/font-awesome.min.css',
+    config.assets_path + '/css/prettyPhoto.css',
+    config.assets_path + '/css/animate.css',
+    config.assets_path + '/css/main.css',
+    config.assets_path + '/css/responsive.css',
+];
 
 /**
  * Task responsável pela copia do css em
@@ -77,12 +87,24 @@ config.bower_path = config.assets_path + '/../bower_components';
         config.assets_path + '/js/**/*.js'
     ])
         .pipe(gulp.dest(config.build_path_js))
-        .on('error', swallowError)
         .pipe(liveReload());
 
     gulp.src(config.vendor_path_js)
         .pipe(gulp.dest(config.build_vendor_path_js))
-        .on('error', swallowError)
+        .pipe(liveReload());
+});
+
+ /**
+ * Task responsável pela copia dos fonts em
+ * "bower_componenst/bootstrap/dist/fonts" para 
+ * "public/build/fonts"
+ */
+gulp.task('copy-fonts', function()
+{
+    gulp.src([
+        config.assets_path + '/fonts/*'
+    ])
+        .pipe(gulp.dest('public/build/fonts'))
         .pipe(liveReload());
 });
 
@@ -115,8 +137,13 @@ config.bower_path = config.assets_path + '/../bower_components';
         ]), 'public/js/all.js', config.assets_path);
 
         mix.version(['js/all.js', 'css/all.css']);
+
+        mix.copy(
+            config.assets_path + '/fonts',
+            'public/build/fonts'
+        );
     });
-}).on('error', swallowError);
+});
 
 /**
  * Task de desenvolvimento.
@@ -127,11 +154,12 @@ config.bower_path = config.assets_path + '/../bower_components';
  gulp.task('watch', ['clear-build-folder'], function()
  {
     liveReload.listen();
-    gulp.start('copy-styles', 'copy-scripts');
+    gulp.start('copy-styles', 'copy-scripts', 'copy-fonts');
     gulp.watch(config.assets_path + '/**',
     [
         'copy-styles',
-        'copy-scripts'
+        'copy-scripts',
+        'copy-fonts'
     ]);
 });
 

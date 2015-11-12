@@ -24,6 +24,14 @@ Route::get('category/{id}', ['as'=>'store.category', 'uses'=>'StoreController@ca
 Route::group(['prefix'=>'admin', 'where' => ['id'=>'[0-9]+']], function() {
 
 	/*
+	 * Rota inicial para o admin
+	 */
+	Route::get(
+		'',
+		['as'=>'admin.index', 'uses'=>'WelcomeController@index']
+	);
+
+	/*
 	 * Grupo de rotas para o prefixo categories
 	 */
 	Route::group(['prefix'=>'categories'], function() {
