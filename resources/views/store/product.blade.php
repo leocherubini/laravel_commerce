@@ -25,7 +25,7 @@
 				<div class="carousel-inner">
 					<div class="item active">
 						@foreach($product->images as $image)
-							<a href="#"><img src="{{ $product->pathImage().$image->id.'.'.$image->extension }}" alt="" width="80"></a>
+							<a href="{{ route('tag', ['id'=>$tag->id]) }}"><img src="{{ $product->pathImage().$image->id.'.'.$image->extension }}" alt="" width="80"></a>
 						@endforeach
 					</div>
 				</div>
@@ -41,11 +41,18 @@
 
 				<span>
 					<span>R$ {{ number_format($product->price, 2, ",", ".") }}</span>
-					<a href="#" class="btn btn-fefault cart">
+					<a href="{{ route('cart.add', ['id'=>$product->id]) }}" class="btn btn-fefault cart">
 						<i class="fa fa-shopping-cart"></i>
 						Adicionar no Carrinho
 					</a>
 				</span>
+
+				<h4>Tags:</h4>
+                @foreach($product->tags as $tag)
+                    <ul class="product_tags">
+                        <li><a href="{{ route('tag', ['id'=>$tag->id]) }}">{{ $tag->name }}</li>
+                    </ul>
+                @endforeach
 			</div><!-- /product-information -->
 		</div>
 	</div>

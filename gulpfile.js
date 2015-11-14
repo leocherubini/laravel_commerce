@@ -56,6 +56,7 @@ config.vendor_path_css = [
     config.assets_path + '/css/animate.css',
     config.assets_path + '/css/main.css',
     config.assets_path + '/css/responsive.css',
+    config.assets_path + '/css/product_tags.css',
 ];
 
 /**

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{ asset('build/css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('build/css/prettyPhoto.css') }}">
         <link rel="stylesheet" href="{{ asset('build/css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/product_tags.css') }}">
     @else
         <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
     @endif
