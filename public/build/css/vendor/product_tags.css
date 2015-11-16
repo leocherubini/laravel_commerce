@@ -2,12 +2,22 @@
 	font-size: 14px;
 	text-align: left;
 	display: inline;
-	
+	margin: 2%;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
 }
 
 .product_tags li {
 	display: inline;
+	margin: 0;
 	
+}
+
+.tags {
+	margin: 0;
+	margin-bottom: 4%;
+	padding: 0;
 }
 
 .tag_link {
