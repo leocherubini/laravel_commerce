@@ -17,7 +17,7 @@ class CartController extends Controller
 
     public function __construct(Cart $cart)
     {
-    	$this->cart =$cart;
+    	$this->cart = $cart;
     }
 
     public function index()

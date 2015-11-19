@@ -36,7 +36,9 @@
 								</td>
 
 								<td class="cart_quantity">
-									R$ {{ $item['qtd'] }}
+									<div class="form-group col-sm-3">
+										{!! Form::input('number', 'qtd', $item['qtd'], ['class'=>'form-control', 'min'=>"1"]) !!}
+									</div>
 								</td>
 
 								<td class="cart_total">
