@@ -14,7 +14,7 @@
 				@if(count($product->images))
 					<img src="{{ $product->pathImage().$product->images->first()->id.'.'.$product->images->first()->extension }}" alt="">
 				@else
-					<img src="{{ $product->pathImage().'no-img.jpg'}}" alt="" width="200">
+					<img src="/images/no-img.jpg" alt="" width="200">
 				@endif
 
 			</div>
@@ -25,7 +25,7 @@
 				<div class="carousel-inner">
 					<div class="item active">
 						@foreach($product->images as $image)
-							<a href="{{ route('tag', ['id'=>$tag->id]) }}"><img src="{{ $product->pathImage().$image->id.'.'.$image->extension }}" alt="" width="80"></a>
+							<a href=""><img src="{{ $product->pathImage().$image->id.'.'.$image->extension }}" alt="" width="80"></a>
 						@endforeach
 					</div>
 				</div>
@@ -50,8 +50,7 @@
 				<h4>Tags:</h4>
                 @foreach($product->tags as $tag)
                     <ul class="product_tags">
-                        <li><a href="{{ route('tag', ['id'=>$tag->id]) }}">{{ $tag->name }}</li>
-                    </ul>
+                        <li><a href="{{ route('tag', ['id'=>$tag->id]) }}">{{                     </ul>
                 @endforeach
 			</div><!-- /product-information -->
 		</div>

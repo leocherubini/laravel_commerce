@@ -35,6 +35,11 @@ config.vendor_path_js = [
     config.assets_path + '/js/price-range.js',
     config.assets_path + '/js/jquery.prettyPhoto.js',
     config.assets_path + '/js/main.js',
+    config.assets_path + '/js/app/angular-resource.min.js',
+    config.assets_path + '/js/app/angular-route.min.js',
+    config.assets_path + '/js/app/main.js',
+    config.assets_path + '/js/app/carrinho-controller.js',
+
 ];
 
 /**

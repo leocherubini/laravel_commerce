@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => 'local',
+    'default' => env('STORAGE_DISK', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -68,12 +68,13 @@ return [
         ],
 
         's3' => [
-            'driver' => 's3',
-            'key'    => env('S3_KEY', getenv('AWS_ACCESS_KEY_ID')),
-            'secret' => env('S3_SECRET', getenv('AWS_SECRET_ACCESS_KEY')),
-            'region' => env('S3_REGION', getenv('S3_REGION')),
-            'bucket' => env('S3_BUCKET', getenv('S3_BUCKET_NAME')),
+        'driver' => 's3',
+            'key' => env('STORAGE_KEY', ''),
+            'secret' => env('STORAGE_SECRET', ''),
+            'region' => env('STORAGE_REGION', ''),
+            'bucket' => env('STORAGE_BUCKET', ''),
         ],
+
 
         'rackspace' => [
             'driver'    => 'rackspace',

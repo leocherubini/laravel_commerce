@@ -24,7 +24,7 @@
 			<tr>
 				<td>{{ $image->id }}</td>
 				<td>
-					<img src="{{ 'https://s3-sa-east-1.amazonaws.com/mycommercefiles/'.$image->id.'.'.$image->extension }}" width="80">
+					<img src="{{ $product->pathImage().$image->id.'.'.$image->extension }}" width="80">
 				</td>
 				<td>{{ $image->extension }}</td>
 				<th>

@@ -157,6 +157,10 @@
         <script src="{{ asset('build/js/vendor/angular-messages.min.js') }}"></script>
         <script src="{{ asset('build/js/vendor/ui-bootstrap.min.js') }}"></script>
         <script src="{{ asset('build/js/vendor/navbar.min.js') }}"></script>
+        <script src="{{ asset('build/js/app/angular-resource.min.js') }}"></script>
+        <script src="{{ asset('build/js/app/angular-route.min.js') }}"></script>
+        <script src="{{ asset('build/js/app/main.js') }}"></script>
+        <script src="{{ asset('build/js/app/carrinho-controller.js') }}"></script>
     @else
         <script src="{{ elixir('js/all.js') }}"></script>
     @endif

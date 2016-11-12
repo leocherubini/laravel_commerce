@@ -2,6 +2,8 @@
 
 namespace CodeCommerce;
 
+use CodeCommerce\Product;
+
 class Cart
 {
 
@@ -22,7 +24,6 @@ class Cart
 			]
 		];
 
-		return $this->items;
 	}
 
 	public function remove($id)
@@ -30,15 +31,15 @@ class Cart
 		unset($this->items[$id]);
 	}
 
-	public function getItems()
-	{
-		return $this->items;
-	}
+	public function setQuantidade($id, $quantidade)
+    {
+        $this->items[$id]['qtd'] = (int) $quantidade;
+    }
 
-	public function all()
-	{
-		return $this->items;
-	}
+    public function all()
+    {
+        return $this->items;
+    }
 
 	public function getTotal()
 	{
@@ -49,5 +50,21 @@ class Cart
 
 		return $total;
 	}
+
+	public function clear()
+    {
+        $this->items = [];
+    }
+
+    // public function imagem($id)
+    // {
+    //     $produto = Product::find($id);
+
+    //     if(!$produto->imagens->isEmpty()) {
+    //         return $produto->imagens->first()->caminho;
+    //     } else {
+    //         return url('images/no-img.jpg');
+    //     }
+    // }
 
 }

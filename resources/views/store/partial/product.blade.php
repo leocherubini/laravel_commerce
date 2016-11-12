@@ -6,7 +6,7 @@
                 @if(count($product->images))
                 <img src="{{ $product->pathImage().$product->images->first()->id.'.'.$product->images->first()->extension }}" alt="" width="200" />
                 @else
-                <img src="https://s3-sa-east-1.amazonaws.com/mycommercefiles/no-img.jpg" alt="" width="200" />
+                <img src="/images/no-img.jpg" alt="" width="200" />
                 @endif
                 <h2>R$ {{ $product->price }}</h2>
                 <p>{{ $product->name }}</p>

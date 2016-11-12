@@ -23,6 +23,43 @@ Route::get('checkout/placeOrder', ['as'=>'checkout.place', 'uses'=>'CheckoutCont
 
 //Route::get('admin/products', 'AdminProductsController@index');
 
+/**
+ * Rotas de account
+ */
+Route::group(['prefix'=>'api'], function() {
+
+	Route::get('item/{id}', [
+		'as'=>'carrinho.item',
+		'uses'=>'API\CartController@item'
+	]); // item
+
+	Route::get('itens', [
+		'as'=>'carrinho.item.all',
+		'uses'=>'API\CartController@itens'
+	]); // item all
+
+	Route::delete('item/delete/{id}', [
+		'as'=>'carrinho.item.delete',
+		'uses'=>'API\CartController@delete'
+	]); // item delete
+
+	Route::get('itens/total', [
+		'as'=>'carrinho.item.total',
+		'uses'=>'API\CartController@total'
+	]); // item total
+
+	Route::post('itens/insere', [
+		'as'=>'carrinho.item.insere',
+		'uses'=>'API\CartController@insere'
+	]); // item total
+
+	Route::get('itens/imagem/{id}', [
+		'as'=>'carrinho.item.imagem',
+		'uses'=>'API\CartController@imagem'
+	]); // item total
+
+}); // rota api rest
+
 /*
  * Grupo de rotas para o prefixo admin
  */

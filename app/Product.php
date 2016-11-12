@@ -4,6 +4,7 @@ namespace CodeCommerce;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Storage as Factory;
 
 class Product extends Model
 {
@@ -72,13 +73,10 @@ class Product extends Model
 
         foreach ($this->images as $image) {
 
-            if (Storage::disk('s3')->exists($image->id . '.' . $image->extension)) {
-                Storage::disk('s3')->delete($image->id . '.' . $image->extension);
+            if (Storage::disk()->exists($image->id . '.' . $image->extension)) {
+                Storage::disk()->delete($image->id . '.' . $image->extension);
             }
-            
-            // if (file_exists(public_path() . '/uploads/' . $image->id . '.' . $image->extension)) {
-            //     Storage::disk('public_local')->delete($image->id . '.' . $image->extension);
-            // }
+
         }
 
         return true;
@@ -91,7 +89,8 @@ class Product extends Model
      */
     public function scopePathImage()
     {
-        return 'https://s3-sa-east-1.amazonaws.com/mycommercefiles/';
+        $caminho = env('STORAGE_URL', 'http://localhost:8000/uploads/');
+        return $caminho;
     }
 
 }
