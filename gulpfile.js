@@ -35,7 +35,6 @@ config.vendor_path_js = [
     config.assets_path + '/js/price-range.js',
     config.assets_path + '/js/jquery.prettyPhoto.js',
     config.assets_path + '/js/main.js',
-    config.assets_path + '/js/holder.js',
 ];
 
 /**
