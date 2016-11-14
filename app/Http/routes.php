@@ -60,115 +60,122 @@ Route::group(['prefix'=>'api'], function() {
 
 }); // rota api rest
 
-/*
- * Grupo de rotas para o prefixo admin
+/**
+ * Usuarios logados
  */
-Route::group(['prefix'=>'admin', 'where' => ['id'=>'[0-9]+']], function() {
+Route::group(['middleware'=>'auth'], function() {
 
 	/*
-	 * Rota inicial para o admin
+	 * Grupo de rotas para o prefixo admin
 	 */
-	Route::get(
-		'',
-		['as'=>'admin.index', 'uses'=>'WelcomeController@index']
-	);
+	Route::group(['prefix'=>'admin', 'where' => ['id'=>'[0-9]+'], 'middleware'=>'admin'], function() {
 
-	/*
-	 * Grupo de rotas para o prefixo categories
-	 */
-	Route::group(['prefix'=>'categories'], function() {
-
+		/*
+		 * Rota inicial para o admin
+		 */
 		Route::get(
 			'',
-			['as' => 'categories', 'uses' => 'CategoriesController@index']
+			['as'=>'admin.index', 'uses'=>'WelcomeController@index']
 		);
 
-		Route::post(
-			'',
-			['as' => 'categories.store', 'uses' => 'CategoriesController@store']
-		);
-
-		Route::get(
-			'create',
-			['as' => 'categories.create', 'uses' => 'CategoriesController@create']
-		);
-
-		Route::get(
-			'{id}/destroy',
-			['as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy']
-		);
-
-		Route::get(
-			'{id}/edit',
-			['as' => 'categories.edit', 'uses' => 'CategoriesController@edit']
-		);
-
-		Route::put(
-			'{id}/update',
-			['as' => 'categories.update', 'uses' => 'CategoriesController@update']
-		);
-
-	}); // Grupo categories
-
-	/*
-	 * Grupo de rotas para o prefixo products
-	 */
-	Route::group(['prefix'=>'products'], function() {
-
-		Route::get(
-			'',
-			['as' => 'products', 'uses' => 'ProductsController@index']
-		);
-
-		Route::post(
-			'',
-			['as' => 'products.store', 'uses' => 'ProductsController@store']
-		);
-
-		Route::get(
-			'create',
-			['as' => 'products.create', 'uses' => 'ProductsController@create']
-		);
-
-		Route::get(
-			'{id}/destroy',
-			['as' => 'products.destroy', 'uses' => 'ProductsController@destroy']
-		);
-
-		Route::get(
-			'{id}/edit',
-			['as' => 'products.edit', 'uses' => 'ProductsController@edit']
-		);
-
-		Route::put(
-			'{id}/update',
-			['as' => 'products.update', 'uses' => 'ProductsController@update']
-		);
-
-		Route::group(['prefix'=>'images'], function() {
+		/*
+		 * Grupo de rotas para o prefixo categories
+		 */
+		Route::group(['prefix'=>'categories'], function() {
 
 			Route::get(
-				'{id}/product', 
-				['as'=>'products.images', 'uses'=>'ProductsController@images']
-			);
-
-			Route::get(
-				'create/{id}/product', 
-				['as'=>'products.images.create', 'uses'=>'ProductsController@createImage']
+				'',
+				['as' => 'categories', 'uses' => 'CategoriesController@index']
 			);
 
 			Route::post(
-				'store/{id}/product', 
-				['as'=>'products.images.store', 'uses'=>'ProductsController@storeImage']
+				'',
+				['as' => 'categories.store', 'uses' => 'CategoriesController@store']
 			);
 
 			Route::get(
-				'destroy/{id}/product', 
-				['as'=>'products.images.destroy', 'uses'=>'ProductsController@destroyImage']
+				'create',
+				['as' => 'categories.create', 'uses' => 'CategoriesController@create']
 			);
 
-		}); // Grupo images
+			Route::get(
+				'{id}/destroy',
+				['as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy']
+			);
 
-	}); // Grupo products
+			Route::get(
+				'{id}/edit',
+				['as' => 'categories.edit', 'uses' => 'CategoriesController@edit']
+			);
 
-}); // Grupo admin
+			Route::put(
+				'{id}/update',
+				['as' => 'categories.update', 'uses' => 'CategoriesController@update']
+			);
+
+		}); // Grupo categories
+
+		/*
+		 * Grupo de rotas para o prefixo products
+		 */
+		Route::group(['prefix'=>'products'], function() {
+
+			Route::get(
+				'',
+				['as' => 'products', 'uses' => 'ProductsController@index']
+			);
+
+			Route::post(
+				'',
+				['as' => 'products.store', 'uses' => 'ProductsController@store']
+			);
+
+			Route::get(
+				'create',
+				['as' => 'products.create', 'uses' => 'ProductsController@create']
+			);
+
+			Route::get(
+				'{id}/destroy',
+				['as' => 'products.destroy', 'uses' => 'ProductsController@destroy']
+			);
+
+			Route::get(
+				'{id}/edit',
+				['as' => 'products.edit', 'uses' => 'ProductsController@edit']
+			);
+
+			Route::put(
+				'{id}/update',
+				['as' => 'products.update', 'uses' => 'ProductsController@update']
+			);
+
+			Route::group(['prefix'=>'images'], function() {
+
+				Route::get(
+					'{id}/product', 
+					['as'=>'products.images', 'uses'=>'ProductsController@images']
+				);
+
+				Route::get(
+					'create/{id}/product', 
+					['as'=>'products.images.create', 'uses'=>'ProductsController@createImage']
+				);
+
+				Route::post(
+					'store/{id}/product', 
+					['as'=>'products.images.store', 'uses'=>'ProductsController@storeImage']
+				);
+
+				Route::get(
+					'destroy/{id}/product', 
+					['as'=>'products.images.destroy', 'uses'=>'ProductsController@destroyImage']
+				);
+
+			}); // Grupo images
+
+		}); // Grupo products
+
+	}); // Grupo admin
+
+}); // usuarios logados
